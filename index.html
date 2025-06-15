@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>April Liang | Homepage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #0f0f0f;
+      color: white;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.8);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
+    header nav a {
+      margin: 0 1rem;
+      color: #bbb;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    header nav a:hover {
+      color: #fff;
+    }
+    .section {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    .intro {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .intro img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border: 2px solid #555;
+    }
+    .accordion {
+      border-top: 1px solid #444;
+    }
+    .accordion-item {
+      border-bottom: 1px solid #444;
+    }
+    .accordion-title {
+      cursor: pointer;
+      padding: 1rem;
+      font-weight: 500;
+      background: #1a1a1a;
+    }
+    .accordion-content {
+      display: none;
+      padding: 1rem;
+      background: #222;
+    }
+    .accordion-item.active .accordion-content {
+      display: block;
+    }
+    .cv-columns {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="font-weight: bold; font-size: 1.2rem;">April Liang</div>
+    <nav>
+      <a href="#cv">CV</a>
+      <a href="#research">Research</a>
+      <a href="#projects">Urban Projects</a>
+      <a href="#global">Global Collaborations</a>
+      <a href="#about">About Me</a>
+    </nav>
+  </header>
+
+  <section class="section intro">
+    <img src="your-photo.jpg" alt="April Liang">
+    <div>
+      <h1>Hello, I'm April!</h1>
+      <p>Urban researcher & design enthusiast. Passionate about cities, data and global engagement.</p>
+      <p>Email: april@example.com<br>LinkedIn: linkedin.com/in/aprilliang</p>
+    </div>
+  </section>
+
+  <section class="section" id="cv">
+    <h2>Curriculum Vitae</h2>
+    <div class="cv-columns">
+      <div><strong>Education</strong></div>
+      <div>
+        <p><strong>PhD in Urban Studies</strong>, University X, 2021–2025</p>
+        <p><strong>BA in Architecture</strong>, University Y, 2016–2020</p>
+      </div>
+      <div><strong>Experience</strong></div>
+      <div>
+        <p><strong>Urban Research Assistant</strong>, ABC Lab, 2023–2024</p>
+        <p><strong>Intern Architect</strong>, XYZ Studio, 2020–2021</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="research">
+    <h2>Research</h2>
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-title">Smart Cities & Data</div>
+        <div class="accordion-content">
+          <p>Research on urban data visualization, digital twins, and civic technology.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-title">Housing Policy</div>
+        <div class="accordion-content">
+          <p>Projects on affordable housing, zoning reform, and urban equity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <h2>Urban Projects</h2>
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-title">Community Planning</div>
+        <div class="accordion-content">
+          <p>Participatory design for public spaces in underrepresented neighborhoods.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-title">Sustainable Urbanism</div>
+        <div class="accordion-content">
+          <p>Integrating ecological principles into urban design frameworks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="global">
+    <h2>Global Collaborations</h2>
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-title">UN Habitat Partnership</div>
+        <div class="accordion-content">
+          <p>Contributed to sustainable cities policy briefs in collaboration with UN Habitat.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-title">World Urban Forum</div>
+        <div class="accordion-content">
+          <p>Presented urban youth perspectives at WUF 2024 in Cairo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <h2>About Me</h2>
+    <p>Beyond cities, I love photography, jazz, and exploring coffee shops around the world.</p>
+    <img src="hobby-photo.jpg" alt="Hobby" style="width:100%; max-width:600px; border-radius: 10px; margin-top: 1rem;">
+  </section>
+
+  <script>
+    const items = document.querySelectorAll('.accordion-item');
+    items.forEach(item => {
+      item.querySelector('.accordion-title').addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
