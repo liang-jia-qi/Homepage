@@ -1,4 +1,4 @@
-// script.js
+// assets/script.js
 document.addEventListener('DOMContentLoaded', function () {
   if (document.getElementById('vanta-bg')) {
     VANTA.WAVES({
