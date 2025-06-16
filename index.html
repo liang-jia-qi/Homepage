@@ -5,18 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jiaqi Liang | Homepage</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css">
   <style>
+    /* 全局设置 */
     html, body {
       margin: 0;
       padding: 0;
       font-family: 'Inter', sans-serif;
-      /* ✅ 修改点：不要 overflow hidden，这会阻止背景动画正确渲染 */
-      height: auto;
+      height: 100%;
       overflow-x: hidden;
       background: black;
+      color: white;
     }
 
+    /* Vanta背景层 */
     #vanta-bg {
       position: fixed;
       top: 0;
@@ -26,6 +27,39 @@
       z-index: -1;
     }
 
+    /* 导航栏 */
+    header {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+      max-width: 1200px;
+      color: white;
+    }
+
+    header div {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: opacity 0.3s ease;
+    }
+
+    nav a:hover {
+      opacity: 0.7;
+    }
+
+    /* 主页内容 */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -33,9 +67,34 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      color: white;
       z-index: 1;
       padding: 2rem;
+    }
+
+    .profile-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid white;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+    }
+
+    .contact {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      opacity: 0.85;
     }
 
     footer {
@@ -50,8 +109,10 @@
 </head>
 
 <body>
+  <!-- 🌌 背景动画容器 -->
   <div id="vanta-bg"></div>
 
+  <!-- 🔝 导航栏 -->
   <header>
     <div>Jiaqi Liang</div>
     <nav>
@@ -63,15 +124,17 @@
     </nav>
   </header>
 
+  <!-- 🎯 主内容区 -->
   <div class="hero">
     <img class="profile-photo" src="photo.jpg" alt="Jiaqi Liang">
     <h1>Hi, I'm Jiaqi</h1>
     <p>Urban researcher & designer passionate about cities, data, and global collaboration.</p>
     <div class="contact">
-      📧 liang@csh.ac.at · 🔗 linkedin.com/in/jiaqi-liang-april/
+      📧 liang@csh.ac.at · 🔗 <a href="https://linkedin.com/in/jiaqi-liang-april/" target="_blank" style="color:white; text-decoration:underline;">LinkedIn</a>
     </div>
   </div>
 
+  <!-- 🔚 页脚 -->
   <footer>
     © 2025 Jiaqi Liang · Powered by GitHub Pages
   </footer>
@@ -81,12 +144,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      function initVanta() {
-        if (typeof VANTA === 'undefined' || !document.querySelector("#vanta-bg")) {
-          setTimeout(initVanta, 100);
-          return;
-        }
-  
+      if (typeof VANTA !== "undefined") {
         VANTA.GLOBE({
           el: "#vanta-bg",
           mouseControls: true,
@@ -100,11 +158,10 @@
           color2: 0xb69b7f,
           backgroundColor: 0x000000
         });
+      } else {
+        console.error("VANTA is not defined");
       }
-  
-      initVanta();
     });
   </script>
-
 </body>
 </html>
