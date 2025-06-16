@@ -1,4 +1,3 @@
-// assets/script.js
 document.addEventListener('DOMContentLoaded', () => {
   VANTA.GLOBE({
     el: "#vanta-bg",
