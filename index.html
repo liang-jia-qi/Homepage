@@ -22,22 +22,34 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: -1;
+      z-index: 0;
       background: transparent;
+      pointer-events: none;
+    }
+
+    #vanta-bg canvas {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 0 !important;
+      pointer-events: none !important;
     }
 
     header {
-      position: absolute;
+      position: fixed;
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 10;
+      z-index: 100;
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 90%;
       max-width: 1200px;
       color: white;
+      pointer-events: auto;
     }
 
     nav a {
@@ -59,9 +71,10 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      z-index: 1;
+      z-index: 10;
       padding: 2rem;
       position: relative;
+      pointer-events: auto;
     }
 
     .profile-photo {
@@ -105,7 +118,7 @@
       font-size: 0.9rem;
       color: #aaa;
       position: relative;
-      z-index: 1;
+      z-index: 10;
     }
 
     /* Loading indicator */
@@ -196,9 +209,12 @@
           vantaEffect.destroy();
         }
 
-        // Create new effect
+        // Create new effect with debug canvas check
+        const targetEl = document.getElementById('vanta-bg');
+        console.log('Target element:', targetEl);
+        
         vantaEffect = VANTA.GLOBE({
-          el: "#vanta-bg",
+          el: targetEl,
           mouseControls: true,
           touchControls: true,
           gyroControls: false,
@@ -206,15 +222,26 @@
           minWidth: 200.00,
           scale: 1.00,
           scaleMobile: 1.00,
-          color: 0xffffff,
-          color2: 0xff6b6b,
+          color: 0x63a4ff,
+          color2: 0x448aff,
           backgroundColor: 0x000000,
-          size: 1.20,
-          spacing: 15.00
+          size: 1.00,
+          spacing: 12.00
         });
 
         console.log('Vanta effect created successfully');
-        loadingIndicator.classList.add('hidden');
+        console.log('Vanta effect object:', vantaEffect);
+        
+        // Check if canvas was created
+        setTimeout(() => {
+          const canvas = targetEl.querySelector('canvas');
+          console.log('Canvas element found:', canvas);
+          if (canvas) {
+            console.log('Canvas dimensions:', canvas.width, 'x', canvas.height);
+            console.log('Canvas style:', canvas.style.cssText);
+          }
+          loadingIndicator.classList.add('hidden');
+        }, 500);
 
         // Force resize after a short delay
         setTimeout(() => {
