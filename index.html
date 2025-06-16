@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jiaqi Liang | Homepage</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet" />
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      background: black;
+      overflow: hidden;
       font-family: 'Inter', sans-serif;
+      background: black;
       color: white;
     }
+
     #vanta-bg {
-      position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 100vw !important;
-      height: 100vh !important;
-      z-index: -999 !important;
-      background: transparent!important;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -999;
+      background: transparent;
     }
+
     canvas.vanta-canvas {
       position: fixed !important;
       top: 0 !important;
@@ -32,12 +35,13 @@
       z-index: -999 !important;
       pointer-events: none !important;
     }
+
     header {
       position: absolute;
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 2;
+      z-index: 10;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -45,6 +49,7 @@
       max-width: 1200px;
       color: white;
     }
+
     nav a {
       margin-left: 20px;
       text-decoration: none;
@@ -52,7 +57,11 @@
       font-weight: 500;
       transition: opacity 0.3s;
     }
-    nav a:hover { opacity: 0.7; }
+
+    nav a:hover {
+      opacity: 0.7;
+    }
+
     .hero {
       min-height: 100vh;
       display: flex;
@@ -62,17 +71,25 @@
       text-align: center;
       z-index: 1;
       padding: 2rem;
+      position: relative;
     }
+
     .profile-photo {
       width: 180px;
       height: 180px;
       border-radius: 50%;
       object-fit: cover;
       border: 3px solid white;
-      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
       margin-bottom: 20px;
     }
-    .contact { margin-top: 1.5rem; font-size: 0.95rem; opacity: 0.85; }
+
+    .contact {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
     footer {
       text-align: center;
       padding: 1rem;
@@ -101,11 +118,12 @@
 
   <!-- 主区 -->
   <div class="hero">
-    <img class="profile-photo" src="photo.jpg" alt="Jiaqi Liang">
+    <img class="profile-photo" src="photo.jpg" alt="Jiaqi Liang" />
     <h1>Hi, I'm Jiaqi</h1>
     <p>Urban researcher & designer passionate about cities, data, and global collaboration.</p>
     <div class="contact">
-      📧 liang@csh.ac.at · 🔗 <a href="https://linkedin.com/in/jiaqi-liang-april/" target="_blank" style="color:white; text-decoration:underline;">LinkedIn</a>
+      📧 liang@csh.ac.at · 🔗
+      <a href="https://linkedin.com/in/jiaqi-liang-april/" target="_blank" style="color:white; text-decoration:underline;">LinkedIn</a>
     </div>
   </div>
 
@@ -132,14 +150,16 @@
           color2: 0xb69b7f,
           backgroundColor: 0x000000
         });
-    
-        // 立刻调用一次 resize，强制更新画布尺寸
-        window.vantaEffect.resize();
+
+        // 延迟强制 resize 确保 canvas 正确铺满
+        setTimeout(() => {
+          window.vantaEffect.resize();
+        }, 100);
       } else {
         console.error("VANTA.GLOBE is not available", VANTA);
       }
     });
-    
+
     window.addEventListener('resize', () => {
       if (window.vantaEffect?.resize) window.vantaEffect.resize();
     });
