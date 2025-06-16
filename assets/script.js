@@ -1,56 +1,36 @@
 // script.js
 
-// Expandable project cards
+// Expandable project cards (for other pages)
 function toggleProject(card) {
   card.classList.toggle("expanded");
 }
 
-// Three.js Earth Globe Animation (elegant, tech-feel)
+// Optional: Basic Three.js animation setup for #earth-canvas
+// This assumes three.js is included elsewhere
 window.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("earth-canvas");
   if (!canvas || !window.THREE) return;
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.z = 10;
-
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
 
-  const globe = new THREE.Mesh(
-    new THREE.SphereGeometry(5, 64, 64),
-    new THREE.MeshStandardMaterial({
-      color: 0x7fa5a8,
-      roughness: 0.4,
-      metalness: 0.3,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.8
-    })
-  );
-  scene.add(globe);
+  const geometry = new THREE.SphereGeometry(5, 32, 32);
+  const material = new THREE.MeshStandardMaterial({ color: 0x7fa5a8, roughness: 0.5 });
+  const sphere = new THREE.Mesh(geometry, material);
+  scene.add(sphere);
 
-  const atmosphere = new THREE.Mesh(
-    new THREE.SphereGeometry(5.1, 64, 64),
-    new THREE.MeshBasicMaterial({
-      color: 0x7fa5a8,
-      blending: THREE.AdditiveBlending,
-      side: THREE.BackSide,
-      transparent: true,
-      opacity: 0.2
-    })
-  );
-  scene.add(atmosphere);
-
-  const light = new THREE.PointLight(0xffffff, 1.2);
-  light.position.set(10, 20, 10);
+  const light = new THREE.PointLight(0xffffff, 1);
+  light.position.set(10, 10, 10);
   scene.add(light);
+
+  camera.position.z = 10;
 
   function animate() {
     requestAnimationFrame(animate);
-    globe.rotation.y += 0.0015;
-    atmosphere.rotation.y += 0.001;
+    sphere.rotation.y += 0.005;
     renderer.render(scene, camera);
   }
   animate();
@@ -61,4 +41,3 @@ window.addEventListener("DOMContentLoaded", () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
 });
-
