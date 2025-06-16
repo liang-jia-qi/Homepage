@@ -1,49 +1,138 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home - Your Name</title>
-  <link rel="stylesheet" href="assets/style.css">
-  <script src="assets/script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jiaqi Liang | Homepage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: #000;
+      color: white;
+      overflow-x: hidden;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.7);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+    nav a {
+      margin-left: 1rem;
+      text-decoration: none;
+      color: #ccc;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100vh;
+      position: relative;
+    }
+    #vanta-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      margin: 1rem 0;
+      max-width: 600px;
+    }
+    .profile-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid #555;
+      object-fit: cover;
+      margin-top: 2rem;
+    }
+    .contact {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: #aaa;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
-<body class="page home">
-  <canvas id="earth-canvas"></canvas>
-  <div class="bg-animation"></div>
+<body>
+  <header>
+    <div style="font-weight: bold; font-size: 1.2rem;">Jiaqi Liang</div>
+    <nav>
+      <a href="cv.html">CV</a>
+      <a href="research.html">Research</a>
+      <a href="projects.html">City Planning Projects</a>
+      <a href="international.html">International Organization Work</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
 
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="logo">Your Name</div>
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="cv.html">CV</a></li>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="projects.html">Urban Planning</a></li>
-        <li><a href="global.html">Global Impact</a></li>
-        <li><a href="about.html">About Me</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Home Section -->
-  <div class="container hero">
-    <div class="hero-content">
-      <h1 class="hero-title">Your Name</h1>
-      <p class="hero-subtitle">Urban Planner & Researcher</p>
-      <p class="hero-description">
-        Passionate about creating sustainable cities and communities through innovative planning solutions.
-        Combining academic research with practical implementation to shape the future of urban development.
-      </p>
-      <div class="contact-links">
-        <a href="mailto:your.email@example.com" class="contact-btn primary">Get In Touch</a>
-        <a href="cv.html" class="contact-btn secondary">View CV</a>
-      </div>
-    </div>
-    <div class="hero-image">
-      <img src="https://via.placeholder.com/350x350/4facfe/ffffff?text=Your+Photo" alt="Profile Photo" class="profile-img">
+  <div class="hero">
+    <div id="vanta-bg"></div>
+    <img class="profile-photo" src="your-photo.jpg" alt="Jiaqi Liang">
+    <h1>Hi, I'm Jiaqi</h1>
+    <p>
+      Urban researcher & designer passionate about cities, data, and global collaboration.
+    </p>
+    <div class="contact">
+      📧 liang@csh.ac.at · 🔗 linkedin.com/in/jiaqi-liang-april/
     </div>
   </div>
+
+  <footer>
+    © 2025 Jiaqi Liang · Powered by GitHub Pages
+  </footer>
+
+  <script>
+    VANTA.WAVES({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.0,
+      scaleMobile: 1.0,
+      color: 0x111111,
+      shininess: 50.0,
+      waveHeight: 15.0,
+      waveSpeed: 0.75,
+      zoom: 0.85
+    })
+  </script>
 </body>
 </html>
