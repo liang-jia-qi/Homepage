@@ -116,19 +116,29 @@
           mouseControls: true,
           touchControls: true,
           gyroControls: false,
-          minHeight: 500,
-          minWidth: 500,
-          scale: 1.0,
-          scaleMobile: 1.0,
+          minHeight: 0,
+          minWidth: 0,
+          scale: 1.5,
+          scaleMobile: 1.5,
           color: 0xcaabca,
           color2: 0xb69b7f,
           backgroundColor: 0x000000
         });
-        console.log('Vanta Globe initialized:', window.vantaEffect);
+  
+        // 动画初始化后，调整 canvas 样式
+        const canvas = document.querySelector("#vanta-bg canvas");
+        if (canvas) {
+          canvas.style.width = "100vw";
+          canvas.style.height = "100vh";
+          canvas.style.aspectRatio = "auto";
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
       } else {
         console.error("VANTA.GLOBE is not available", VANTA);
       }
     });
+  
     window.addEventListener('resize', () => {
       if (window.vantaEffect?.resize) window.vantaEffect.resize();
     });
