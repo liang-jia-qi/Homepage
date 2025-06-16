@@ -7,6 +7,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
   <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    /* Vanta background container */
     #vanta-bg {
       position: fixed;
       top: 0;
@@ -15,6 +24,38 @@
       height: 100%;
       z-index: -1;
     }
+
+    header {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+      max-width: 1200px;
+      color: white;
+    }
+
+    header div {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: opacity 0.3s ease;
+    }
+
+    nav a:hover {
+      opacity: 0.7;
+    }
+
     .hero {
       position: relative;
       display: flex;
@@ -25,13 +66,54 @@
       height: 100vh;
       color: white;
       z-index: 1;
+      padding: 20px;
+    }
+
+    .hero img.profile-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 3px solid white;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+    }
+
+    .contact {
+      margin-top: 20px;
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.8rem;
+      z-index: 1;
     }
   </style>
 </head>
 
 <body>
+  <!-- 🌐 Background Animation -->
+  <div id="vanta-bg"></div>
+
+  <!-- 🔝 Navigation -->
   <header>
-    <div style="font-weight: bold; font-size: 1.2rem;">Jiaqi Liang</div>
+    <div>Jiaqi Liang</div>
     <nav>
       <a href="cv.html">CV</a>
       <a href="research.html">Research</a>
@@ -40,9 +122,6 @@
       <a href="about.html">About</a>
     </nav>
   </header>
-
-  <!-- 🌐 Background for Vanta -->
-  <div id="vanta-bg"></div>
 
   <!-- 👤 Hero Section -->
   <div class="hero">
@@ -54,11 +133,12 @@
     </div>
   </div>
 
+  <!-- 🧾 Footer -->
   <footer>
     © 2025 Jiaqi Liang · Powered by GitHub Pages
   </footer>
 
-  <!-- ✅ JS: Use CDN to avoid local file errors -->
+  <!-- ✅ Vanta / Three.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
   <script>
