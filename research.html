@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Research | Jiaqi Liang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+      color: white;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Animated background grid */
+    .grid-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;
+      background-image: 
+        linear-gradient(rgba(99, 164, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 164, 255, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridMove 20s linear infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .orb1 {
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(99, 164, 255, 0.1) 0%, transparent 70%);
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .orb2 {
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(68, 138, 255, 0.08) 0%, transparent 70%);
+      top: 60%;
+      right: 15%;
+      animation-delay: 3s;
+    }
+
+    .orb3 {
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(130, 177, 255, 0.12) 0%, transparent 70%);
+      bottom: 20%;
+      left: 30%;
+      animation-delay: 6s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      33% { transform: translateY(-30px) scale(1.1); }
+      66% { transform: translateY(15px) scale(0.9); }
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #63a4ff;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: 400;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 5px 0;
+    }
+
+    nav a:hover, nav a.active {
+      color: #63a4ff;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #63a4ff;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after, nav a.active::after {
+      width: 100%;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 2rem 4rem;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .page-header h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      background: linear-gradient(135deg, #63a4ff, #448aff, #82b1ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-header .subtitle {
+      font-size: 1.3rem;
+      color: #aaa;
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .research-section {
+      margin-bottom: 3rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 1rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .section-header:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(99, 164, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: white;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-icon {
+      font-size: 2rem;
+      filter: drop-shadow(0 0 10px rgba(99, 164, 255, 0.3));
+    }
+
+    .section-toggle {
+      font-size: 1.5rem;
+      color: #63a4ff;
+      transition: transform 0.3s ease;
+    }
+
+    .section-toggle.expanded {
+      transform: rotate(180deg);
+    }
+
+    .section-content {
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.3s ease;
+      max-height: 0;
+      opacity: 0;
+    }
+
+    .section-content.expanded {
+      max-height: 2000px;
+      opacity: 1;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      padding: 1rem 0;
+    }
+
+    .research-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+
+    .research-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(99, 164, 255, 0.1), rgba(68, 138, 255, 0.05));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .research-card:hover::before {
+      opacity: 1;
+    }
+
+    .research-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: rgba(99, 164, 255, 0.4);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(99, 164, 255, 0.2);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 220px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298, #63a4ff);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+      z-index: 2;
+    }
+
+    .card-image .placeholder-icon {
+      font-size: 4rem;
+      color: rgba(255, 255, 255, 0.8);
+      z-index: 3;
+      position: relative;
+    }
+
+    /* Custom background patterns for different research areas */
+    .card-image.urban-data {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .card-image.mobility {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .card-image.sustainability {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .card-image.complexity {
+      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    }
+
+    .card-image.ai-planning {
+      background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    }
+
+    .card-content {
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-category {
+      display: inline-block;
+      background: rgba(99, 164, 255, 0.2);
+      color: #82b1ff;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+
+    .card-description {
+      color: #ccc;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-date {
+      color: #aaa;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .card-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .status-ongoing {
+      color: #4ade80;
+    }
+
+    .status-completed {
+      color: #60a5fa;
+    }
+
+    .status-published {
+      color: #fbbf24;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .container {
+        padding: 100px 1rem 2rem;
+      }
+      
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      nav {
+        gap: 15px;
+      }
+      
+      nav a {
+        font-size: 0.9rem;
+      }
+      
+      .section-title {
+        font-size: 1.4rem;
+      }
+      
+      .section-header {
+        padding: 1rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated background elements -->
+  <div class="grid-bg"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <!-- Navigation -->
+  <header>
+    <div class="logo">Jiaqi Liang</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cv.html">CV</a>
+      <a href="research.html" class="active">Research</a>
+      <a href="projects.html">Urban Projects</a>
+      <a href="international.html">International Work</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="page-header">
+      <h1>Research Portfolio</h1>
+      <p class="subtitle">Exploring the intersection of urban complexity, data science, and sustainable city planning through interdisciplinary research</p>
+    </div>
+
+    <!-- Urban Data Science Section -->
+    <div class="research-section">
+      <div class="section-header" onclick="toggleSection('urban-data')">
+        <h2 class="section-title">
+          <span class="section-icon">🏙️</span>
+          Urban Data Science
+        </h2>
+        <span class="section-toggle" id="toggle-urban-data">▼</span>
+      </div>
+      <div class="section-content" id="content-urban-data">
+        <div class="research-grid">
+          <div class="research-card" onclick="window.open('research-detail-urban-complexity.html', '_blank')">
+            <div class="card-image urban-data">
+              <div class="placeholder-icon">🏙️</div>
+            </div>
+            <div class="card-content">
+              <div class="card-category">Urban Data Science</div>
+              <h3 class="card-title">Urban Complexity Metrics Framework</h3>
+              <p class="card-description">Developing computational methods to quantify and analyze urban complexity using multi-scale data integration and network analysis.</p>
+              <div class="card-footer">
+                <div class="card-date">2023 - 2024</div>
+                <div class="card-status status-ongoing">
+                  <div class="status-dot"></div>
+                  Ongoing
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="research-card" onclick="window.open('research-detail-ai-urban-design.html', '_blank')">
+            <div class="card-image ai-planning">
+              <div class="placeholder-icon">🤖</div>
+            </div>
+            <div class="card-content">
+              <div class="card-category">AI & Urban Planning</div>
+              <h3 class="card-title">AI-Assisted Urban Design Tools</h3>
+              <p class="card-description">Machine learning applications for automated urban design optimization, integrating environmental factors and community preferences.</p>
+              <div class="card-footer">
+                <div class="card-date">2023 - Present</div>
+                <div class="card-status status-ongoing">
+                  <div class="status-dot"></div>
+                  Ongoing
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobility & Transportation Section -->
+    <div class="research-section">
+      <div class="section-header" onclick="toggleSection('mobility')">
+        <h2 class="section-title">
+          <span class="section-icon">🚊</span>
+          Mobility & Transportation
+        </h2>
+        <span class="section-toggle" id="toggle-mobility">▼</span>
+      </div>
+      <div class="section-content" id="content-mobility">
+        <div class="research-grid">
+          <div class="research-card" onclick="window.open('research-detail-sustainable-mobility.html', '_blank')">
+            <div class="card-image mobility">
+              <div class="placeholder-icon">🚊</div>
+            </div>
+            <div class="card-content">
+              <div class="card-category">Sustainable Mobility</div>
+              <h3 class="card-title">European Cities Mobility Networks</h3>
+              <p class="card-description">Comparative analysis of sustainable transportation systems across major European metropolitan areas using graph theory and mobility data.</p>
+              <div class="card-footer">
+                <div class="card-date">2022 - 2023</div>
+                <div class="card-status status-published">
+                  <div class="status-dot"></div>
+                  Published
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="research-card" onclick="window.open('research-detail-smart-mobility.html', '_blank')">
+            <div class="card-image mobility">
+              <div class="placeholder-icon">📱</div>
+            </div>
+            <div class="card-content">
+              <div class="card-category">Smart Mobility</div>
+              <h3 class="card-title">Real-time Urban Mobility Optimization</h3>
+              <p class="card-description">Developing predictive models for urban traffic flow optimization using real-time data streams and reinforcement learning algorithms.</p>
+              <div class="card-footer">
+                <div class="card-date">2023 - Present</div>
+                <div class="card-status status-ongoing">
+                  <div class="status-dot"></div>
+                  Ongoing
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sustainability & Climate Section -->
+    <div class="research-section">
+      <div class="section-header" onclick="toggleSection('sustainability')">
+        <h2 class="section-title">
+          <span class="section-icon">🌱</span>
+          Sustainability & Climate
+        </h2>
+        <span class="section-toggle" id="toggle-sustainability">▼</span>
+      </div>
+      <div class="section-content" id="content-sustainability">
+        <div class="research-grid">
+          <div class="research-card" onclick="window.open('research-detail-climate-resilience.html', '_blank')">
+            <div class="card-image sustainability">
+              <div class="placeholder-icon">🌱</div>
+            </div>
+            <div class="card-content">
+              <div class="card-category">Climate Resilience</div>
+              <h3 class="card-title">Climate-Adaptive Urban Systems</h3>
+              <p class="card-description">Modeling urban resilience to climate change through complex adaptive systems theory and scenario-based planning approaches.</p>
+              <div class="card-footer">
+                <div class="card-date">2021 - 2022</div>
+                <div class="card-status status-completed">
+                  <div class="status-dot"></div>
+                  Completed
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Complex Systems & Networks Section -->
+    <div class="research-section">
+      <div class="section-header" onclick="toggleSection('complexity')">
+        <h2 class="section-title">
+          <span class="section-icon">🕸️</span>
+          Complex Systems & Networks
+        </h2>
+        <span class="section-toggle" id="toggle-complexity">▼</span>
+      </div>
+      <div class="section-content" id="content-complexity">
+        <div class="research-grid">
+          <div class="research-card" onclick="window.open('research-detail-network-dynamics.html', '_blank')">
+            <div class="card-image complexity">
+              <div class="placeholder-icon">🕸️</div>
+            </div>
+            <div class="card-content">
+              <div class="card-category">Network Dynamics</div>
+              <h3 class="card-title">Urban Infrastructure Networks</h3>
+              <p class="card-description">Analyzing the evolution and robustness of urban infrastructure networks using temporal network analysis and cascading failure models.</p>
+              <div class="card-footer">
+                <div class="card-date">2022 - 2024</div>
+                <div class="card-status status-ongoing">
+                  <div class="status-dot"></div>
+                  Ongoing
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function toggleSection(sectionId) {
+      const content = document.getElementById(`content-${sectionId}`);
+      const toggle = document.getElementById(`toggle-${sectionId}`);
+      
+      if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        toggle.classList.remove('expanded');
+      } else {
+        content.classList.add('expanded');
+        toggle.classList.add('expanded');
+      }
+    }
+
+    // Add stagger animation on page load for visible cards
+    document.addEventListener('DOMContentLoaded', () => {
+      // Open first section by default
+      toggleSection('urban-data');
+      
+      // Add hover effects
+      const researchCards = document.querySelectorAll('.research-card');
+      researchCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'translateY(0) scale(1)';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
