@@ -6,108 +6,45 @@
   <title>Jiaqi Liang | Homepage</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
-
   <style>
     html, body {
       margin: 0;
       padding: 0;
       font-family: 'Inter', sans-serif;
-      height: 100%;
-      background: #000;
-      color: white;
-    }
-
-    body {
+      /* ✅ 修改点：不要 overflow hidden，这会阻止背景动画正确渲染 */
+      height: auto;
       overflow-x: hidden;
-      position: relative;
+      background: black;
     }
 
     #vanta-bg {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       z-index: -1;
     }
 
-    header {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 90%;
-      max-width: 1200px;
-      color: white;
-    }
-
-    header div {
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: white;
-      font-weight: 500;
-      transition: opacity 0.3s ease;
-    }
-
-    nav a:hover {
-      opacity: 0.7;
-    }
-
     .hero {
-      position: relative;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       text-align: center;
-      height: 100vh;
+      color: white;
       z-index: 1;
-      padding: 20px;
-    }
-
-    .hero img.profile-photo {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 20px;
-      border: 3px solid white;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 600px;
-    }
-
-    .contact {
-      margin-top: 20px;
-      font-size: 0.95rem;
-      opacity: 0.85;
+      padding: 2rem;
     }
 
     footer {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: rgba(255, 255, 255, 0.5);
-      font-size: 0.8rem;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #aaa;
       z-index: 1;
+      position: relative;
     }
   </style>
 </head>
@@ -139,7 +76,7 @@
     © 2025 Jiaqi Liang · Powered by GitHub Pages
   </footer>
 
-  <!-- ✅ Vanta / Three.js CDN -->
+  <!-- ✅ 脚本加载顺序不能错 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
   <script>
@@ -155,3 +92,7 @@
       color: 0xcaabca,
       color2: 0xb69b7f,
       backgroundColor: 0x000000
+    });
+  </script>
+</body>
+</html>
