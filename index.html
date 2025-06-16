@@ -18,13 +18,14 @@
     }
 
     /* Vanta背景层 */
-    #vanta-bg {
+    vanta-bg {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: -1;
+      z-index: -999;
+      background: transparent;
     }
 
     /* 导航栏 */
@@ -139,29 +140,31 @@
     © 2025 Jiaqi Liang · Powered by GitHub Pages
   </footer>
 
-  <!-- ✅ 脚本加载顺序不能错 -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.globe.min.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      if (typeof VANTA !== "undefined") {
-        VANTA.GLOBE({
+    window.addEventListener('load', () => {
+      if (typeof VANTA?.GLOBE === 'function') {
+        window.vantaEffect?.destroy?.();
+        window.vantaEffect = VANTA.GLOBE({
           el: "#vanta-bg",
           mouseControls: true,
           touchControls: true,
           gyroControls: false,
-          minHeight: 200.00,
-          minWidth: 200.00,
-          scale: 1.00,
-          scaleMobile: 1.00,
+          minHeight: 200,
+          minWidth: 200,
+          scale: 1.0,
+          scaleMobile: 1.0,
           color: 0xcaabca,
           color2: 0xb69b7f,
           backgroundColor: 0x000000
         });
+        console.log('Vanta Globe initialized:', window.vantaEffect);
       } else {
-        console.error("VANTA is not defined");
+        console.error("VANTA.GLOBE is not ready:", VANTA);
       }
     });
   </script>
+  
 </body>
 </html>
