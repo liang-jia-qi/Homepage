@@ -2,21 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jiaqi Liang | Homepage</title>
-
-  <!-- 字体 -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet" />
-
-  <!-- 外部样式表 -->
-  <link rel="stylesheet" href="assets/style.css" />
-
-  <!-- three.js 和 vanta.js -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
-
-  <!-- 外部脚本 -->
-  <script src="assets/script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="three.r134.min.js"></script>
+  <script src="vanta.globe.min.js"></script>
+  <style>
+    #vanta-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100vh;
+      position: relative;
+      color: white;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .profile-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid #555;
+      object-fit: cover;
+      margin-top: 2rem;
+    }
+    .contact {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: #ccc;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.7);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+    nav a {
+      margin-left: 1rem;
+      text-decoration: none;
+      color: #ccc;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -25,8 +82,8 @@
     <nav>
       <a href="cv.html">CV</a>
       <a href="research.html">Research</a>
-      <a href="projects.html">City Planning Projects</a>
-      <a href="international.html">International Organization Work</a>
+      <a href="projects.html">Urban Projects</a>
+      <a href="international.html">International Work</a>
       <a href="about.html">About</a>
     </nav>
   </header>
@@ -35,11 +92,9 @@
     <div id="vanta-bg"></div>
     <img class="profile-photo" src="your-photo.jpg" alt="Jiaqi Liang">
     <h1>Hi, I'm Jiaqi</h1>
-    <p>
-      Urban researcher & designer passionate about cities, data, and global collaboration.
-    </p>
+    <p>Urban researcher & designer passionate about cities, data, and global collaboration.</p>
     <div class="contact">
-      📧 liang@csh.ac.at · 🔗 linkedin.com/in/jiaqi-liang-april/
+      📧 jiaqi@example.com · 🔗 linkedin.com/in/jiaqi-liang
     </div>
   </div>
 
@@ -48,20 +103,19 @@
   </footer>
 
   <script>
-    VANTA.WAVES({
+    VANTA.GLOBE({
       el: "#vanta-bg",
       mouseControls: true,
       touchControls: true,
+      gyroControls: false,
       minHeight: 200.00,
       minWidth: 200.00,
-      scale: 1.0,
-      scaleMobile: 1.0,
-      color: 0x111111,
-      shininess: 50.0,
-      waveHeight: 15.0,
-      waveSpeed: 0.75,
-      zoom: 0.85
-    })
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0xcaabca,
+      color2: 0xb69b7f,
+      backgroundColor: 0x000000
+    });
   </script>
 </body>
 </html>
