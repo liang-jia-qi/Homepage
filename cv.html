@@ -2,131 +2,320 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jiaqi Liang | CV</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CV | Jiaqi Liang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg-dark: #111;
-      --text-light: #f5f5f5;
-      --text-muted: #ccc;
-      --accent: #7FA5A8;
-      --border: #333;
-      --card-bg: #1a1a1a;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-light);
+    html, body {
       margin: 0;
       padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+      color: white;
       line-height: 1.6;
     }
 
+    /* Animated background particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+      50% { transform: translateY(-20px) rotate(180deg); opacity: 0.6; }
+    }
+
     header {
-      background-color: #000;
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      padding: 20px 5%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #63a4ff;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
     }
 
     nav a {
-      margin-left: 1.2rem;
       text-decoration: none;
-      color: var(--text-muted);
-      font-weight: 500;
-      transition: color 0.2s ease;
+      color: white;
+      font-weight: 400;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 5px 0;
     }
 
-    nav a:hover {
-      color: var(--text-light);
+    nav a:hover, nav a.active {
+      color: #63a4ff;
     }
 
-    nav a.active {
-      color: var(--accent);
-      font-weight: 700;
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #63a4ff;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after, nav a.active::after {
+      width: 100%;
     }
 
     .container {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-
-    .cv-section {
-      margin-bottom: 1.5rem;
-      background-color: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: all 0.3s ease;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 120px 2rem 4rem;
     }
 
     .cv-header {
-      background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
-      color: var(--text-light);
-      padding: 1rem 1.5rem;
-      cursor: pointer;
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .cv-header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin: 0;
+      background: linear-gradient(135deg, #63a4ff, #448aff, #82b1ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cv-header .subtitle {
       font-size: 1.2rem;
+      color: #aaa;
+      margin-top: 0.5rem;
+      font-weight: 300;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #63a4ff, #448aff);
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 500;
+      margin-top: 2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(99, 164, 255, 0.3);
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99, 164, 255, 0.4);
+    }
+
+    .cv-section {
+      margin-bottom: 3rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cv-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #63a4ff, #448aff, #82b1ff);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
       font-weight: 600;
-      border-bottom: 1px solid var(--border);
+      color: #63a4ff;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .cv-content {
-      padding: 1.2rem 1.5rem;
-      display: none;
-      animation: fadeIn 0.3s ease-in-out;
+    .section-icon {
+      font-size: 1.3rem;
     }
 
-    .cv-section.open .cv-content {
-      display: block;
+    .experience-item, .education-item, .skill-category {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    ul {
-      list-style: disc;
+    .experience-item:last-child, .education-item:last-child, .skill-category:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .position {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: white;
+    }
+
+    .company {
+      color: #82b1ff;
+      font-weight: 500;
+    }
+
+    .duration {
+      color: #aaa;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .description {
+      color: #ccc;
+      margin-top: 0.5rem;
+    }
+
+    .description ul {
+      margin: 0.5rem 0;
       padding-left: 1.5rem;
     }
 
-    li {
+    .description li {
+      margin-bottom: 0.3rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .skill-name {
+      font-weight: 500;
+      color: white;
       margin-bottom: 0.5rem;
     }
 
-    footer {
-      text-align: center;
-      padding: 2rem 0;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
-      margin-top: 4rem;
+    .skill-level {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+      overflow: hidden;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-5px); }
-      to { opacity: 1; transform: translateY(0); }
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(90deg, #63a4ff, #448aff);
+      border-radius: 3px;
+      transition: width 2s ease;
     }
 
-    @media (max-width: 600px) {
-      h1 { font-size: 2rem; }
-      nav a { margin-left: 0.8rem; font-size: 0.95rem; }
-      .cv-header { font-size: 1rem; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #ccc;
+    }
+
+    .contact-item a {
+      color: #82b1ff;
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      color: #63a4ff;
+    }
+
+    @media (max-width: 768px) {
+      .cv-header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .container {
+        padding: 100px 1rem 2rem;
+      }
+      
+      .item-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      nav {
+        gap: 20px;
+      }
+      
+      nav a {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
-<body class="page cv">
+<body>
+  <!-- Animated particles background -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Navigation -->
   <header>
-    <div style="font-weight: bold; font-size: 1.2rem; color: white;">Jiaqi Liang</div>
+    <div class="logo">Jiaqi Liang</div>
     <nav>
       <a href="index.html">Home</a>
       <a href="cv.html" class="active">CV</a>
@@ -137,58 +326,316 @@
     </nav>
   </header>
 
-  <main class="container">
-    <h1>Curriculum Vitae</h1>
+  <!-- Main Content -->
+  <div class="container">
+    <div class="cv-header">
+      <h1>Curriculum Vitae</h1>
+      <p class="subtitle">Urban Researcher & Designer</p>
+      <a href="#" class="download-btn">
+        <span>📄</span>
+        Download PDF
+      </a>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="cv-section">
+      <h2 class="section-title">
+        <span class="section-icon">📧</span>
+        Contact Information
+      </h2>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span>📧</span>
+          <a href="mailto:liang@csh.ac.at">liang@csh.ac.at</a>
+        </div>
+        <div class="contact-item">
+          <span>🔗</span>
+          <a href="https://linkedin.com/in/jiaqi-liang-april/" target="_blank">LinkedIn Profile</a>
+        </div>
+        <div class="contact-item">
+          <span>🌍</span>
+          <span>Vienna, Austria</span>
+        </div>
+        <div class="contact-item">
+          <span>🎓</span>
+          <span>Complexity Science Hub Vienna</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Professional Experience -->
+    <div class="cv-section">
+      <h2 class="section-title">
+        <span class="section-icon">💼</span>
+        Professional Experience
+      </h2>
+      
+      <div class="experience-item">
+        <div class="item-header">
+          <div>
+            <div class="position">Urban Researcher</div>
+            <div class="company">Complexity Science Hub，Vienna，Austria</div>
+          </div>
+          <div class="duration">2024.11 - Present</div>
+        </div>
+        <div class="description">
+          <ul>
+            <li>Worked as a PhD researcher focusing on urban sustainability in the Digital Innovation School of Complexity Science Hub. </li>
+            <li>Conducted research on transportation planning, city complexity, urban growth and morphology by big data and machine learning.</li>
+            <li>Collaborating with international research teams on smart city initiatives，publishing findings in peer-reviewed journals and presenting at international conferences</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="item-header">
+          <div>
+            <div class="position">Sustainable Smart City Analyst</div>
+            <div class="company">International Telecommunication Union, Geneva, Switzerland</div>
+          </div>
+          <div class="duration">2023.08 - 2024.08</div>
+        </div>
+        <div class="description">
+          <ul>
+            <li>Organized the 1st United Nations Virtual Worlds Day involving 20+ UN entities and 200+ participants. Drafted and published the 1st UN Executive Briefing on virtual worlds and SDGs. </li>
+            <li>Crafted graphic-rich webpages and presentations, authored event reports, and actively contributed to over 5 international conferences. Contributed to drafting and advising on 2 ITU Technical Reports. </li>
+            <li>Conducted research on digital transformation and sustainable development trends, smart city case studies, industrial solutions and examined the impact of digital twins, large generative models on future city.</li>
+            <li>Managed the digital transformation webinar series with over 30 episodes and attracted 1000+ participants，enriched the Digital Transformation Resource Hub through literature reviews and data analysis.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="item-header">
+          <div>
+            <div class="position">Researcher on Decentralized Governance</div>
+            <div class="company">MIT Media Lab & Tongji City Science Lab</div>
+          </div>
+          <div class="duration">2020 - 2021</div>
+        </div>
+        <div class="description">
+          <ul>
+            <li>Engaged in the SoCity DAO Project, focused on promoting green commute transportation means, studied decentralized incentive policies combined with current blockchain layer2 solutions, and smart contract technologies. Developed the web application product on green commute and reputation record. </li>
+            <li>Suggested new voting models, reputation score calculation and governance token system design and promoted prosocial pro-sustainable behaviors in cities.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="experience-item">
+      <div class="item-header">
+        <div>
+          <div class="position">Sustainability Assessment Intern</div>
+          <div class="company">The KPA Group, Pleasanton, CA, United States</div>
+        </div>
+        <div class="duration">2022.05 - 2022.10</div>
+      </div>
+      <div class="description">
+        <ul>
+          <li>Assessed public facilities, documented data, and completed sustainability checklists. Drafted urban sustainable strategies based on LEED and WELL standards for 10+ Northern California projects.</li>
+          <li>Wrote technical reports on net zero carbon emission. Assessed local hazards for climate change adaptation, analyzed earthquakes, floods and wildfires with open data from USGS, NOAA by ArcGIS Pro</li>
+          <li>Built predictive models for city population and staff growth by Stata, which were accepted by the KPA Group as the standardized procedure for future projects.</li>
+          <li>Created 3D models of facilities for sunlight, thermal, and energy analysis with DEM data.</li>
+        </ul>
+      </div>
+    </div>
 
     <!-- Education -->
-    <section class="cv-section">
-      <div class="cv-header" onclick="toggleSection(this)">Education</div>
-      <div class="cv-content">
-        <ul>
-          <li><strong>Ph.D. in Architecture</strong> – Complexity Science Hub & Graz University of Technology, 2024.11–Present</li>
-          <li><strong>Master of Regional Planning</strong> – Cornell University, 2021.08–2023.06</li>
-          <li><strong>BSc. in Geography</strong> – East China Normal University, 2016.09–2020.07</li>
-        </ul>
+    <div class="cv-section">
+      <h2 class="section-title">
+        <span class="section-icon">🎓</span>
+        Education
+      </h2>
+      
+      <div class="education-item">
+        <div class="item-header">
+          <div>
+            <div class="position">PhD in Urban Studies</div>
+            <div class="company">Complexity Science Hub & Graz University of Technology</div>
+          </div>
+          <div class="duration">2024 - 2027 (Expected)</div>
+        </div>
+        <div class="description">
+          Dissertation: "Data-Driven Approaches to Adaptive Urban Planning: A Complexity Science Perspective"
+        </div>
       </div>
-    </section>
 
-    <!-- Experience -->
-    <section class="cv-section">
-      <div class="cv-header" onclick="toggleSection(this)">Working Experience</div>
-      <div class="cv-content">
-        <ul>
-          <li><strong>Smart Sustainable Cities Analyst</strong> – International Telecommunication Union, Geneva, Switzerland (2023.08–2024.08)</li>
-          <li><strong>Researcher on Decentralized Governance</strong> – MIT Media Lab & Tongji City Science Lab (2023.10-2024.10)</li>
-          <li><strong>Sustainability Planning Intern</strong> – The KPA Group, Pleasanton, CA (2022.05-2022.10)</li>
-          <li><strong>GIS Lab Graduate Assistant</strong> – Cornell University, Ithaca, NY (2022.08-2022.12)</li>
-          <li><strong>City Planning Consultant</strong> – Shanghai TIANHUA Urban Planning and Design Co., Ltd, Shanghai, China (2020.08-2021.05)</li>
-        </ul>
+      <div class="education-item">
+        <div class="item-header">
+          <div>
+            <div class="position">Master of Regional Planningdiv>
+            <div class="company">Cornell University</div>
+          </div>
+          <div class="duration">2021 - 2023</div>
+        </div>
+        <div class="description">
+          Specialization in Smart Cities and Digital Urban Planning Technologies
+        </div>
       </div>
-    </section>
+
+      <div class="education-item">
+        <div class="item-header">
+          <div>
+            <div class="position">Bachelor in Human Geography</div>
+            <div class="company">East China Normal University</div>
+          </div>
+          <div class="duration">2016 - 2020</div>
+        </div>
+        <div class="description">
+          Focus on Economic Geography & Regional Planning
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="cv-section">
+      <h2 class="section-title">
+        <span class="section-icon">🛠️</span>
+        Technical Skills
+      </h2>
+      
+      <div class="skills-grid">
+        <div class="skill-item">
+          <div class="skill-name">Python & Data Analysis</div>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 90%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">GIS & Spatial Analysis</div>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 95%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Urban Design Software</div>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 70%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">R & Statistical Modeling</div>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 90%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Machine Learning</div>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 75%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">3D Modeling & Visualization</div>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 70%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Languages -->
+    <div class="cv-section">
+      <h2 class="section-title">
+        <span class="section-icon">🌐</span>
+        Languages
+      </h2>
+      
+      <div class="skills-grid">
+        <div class="skill-item">
+          <div class="skill-name">English</div>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 95%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Chinese (Native)</div>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 100%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">French</div>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 60%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Publications -->
-    <section class="cv-section">
-      <div class="cv-header" onclick="toggleSection(this)">📝 Publications</div>
-      <div class="cv-content">
+    <div class="cv-section">
+      <h2 class="section-title">
+        <span class="section-icon">🏆</span>
+        Publications
+      </h2>
+      
+      <div class="description">
+        <p><strong>Selected Publications:</strong></p>
         <ul>
-          <li>Liang, J. (2023). <em>Understanding Heterogeneous Effect of Built-environment on Shenzhen Metro Ridership by Classifying Stations</em>. Cornell University.</li>
+          <li>Liang, J. (2023). "Understanding Heterogeneous Effect of Built-environment on Shenzhen Metro Ridership by Classifying Stations". <em>Cornell University</em>. </li>
         </ul>
+        
       </div>
-    </section>
-  </main>
-
-  <footer>
-    © 2025 Jiaqi Liang · Powered by GitHub Pages
-  </footer>
+    </div>
+  </div>
 
   <script>
-    function toggleSection(header) {
-      const section = header.parentElement;
-      section.classList.toggle('open');
+    // Create animated particles
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (6 + Math.random() * 4) + 's';
+        particlesContainer.appendChild(particle);
+      }
     }
 
-    // Open all sections by default
-    document.querySelectorAll('.cv-section').forEach(s => s.classList.add('open'));
+    // Animate skill bars on scroll
+    function animateSkillBars() {
+      const skillBars = document.querySelectorAll('.skill-progress');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const progress = entry.target;
+            const width = progress.style.width;
+            progress.style.width = '0%';
+            setTimeout(() => {
+              progress.style.width = width;
+            }, 100);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      skillBars.forEach(bar => observer.observe(bar));
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      createParticles();
+      animateSkillBars();
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
   </script>
 </body>
 </html>
