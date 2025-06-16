@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jiaqi Liang | Homepage</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    /* 全局设置 */
     html, body {
       margin: 0;
       padding: 0;
-      font-family: 'Inter', sans-serif;
       height: 100%;
       overflow: hidden;
       background: black;
+      font-family: 'Inter', sans-serif;
       color: white;
     }
-
-    /* Vanta背景层 */
+    /* 正确选择器：ID 前面必须加 # */
     #vanta-bg {
       position: fixed;
       top: 0;
@@ -27,8 +25,6 @@
       z-index: -999;
       background: transparent;
     }
-
-    /* 导航栏 */
     header {
       position: absolute;
       top: 20px;
@@ -42,25 +38,14 @@
       max-width: 1200px;
       color: white;
     }
-
-    header div {
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-
     nav a {
       margin-left: 20px;
       text-decoration: none;
       color: white;
       font-weight: 500;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.3s;
     }
-
-    nav a:hover {
-      opacity: 0.7;
-    }
-
-    /* 主页内容 */
+    nav a:hover { opacity: 0.7; }
     .hero {
       min-height: 100vh;
       display: flex;
@@ -71,7 +56,6 @@
       z-index: 1;
       padding: 2rem;
     }
-
     .profile-photo {
       width: 180px;
       height: 180px;
@@ -81,39 +65,22 @@
       box-shadow: 0 0 20px rgba(255,255,255,0.3);
       margin-bottom: 20px;
     }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 600px;
-    }
-
-    .contact {
-      margin-top: 1.5rem;
-      font-size: 0.95rem;
-      opacity: 0.85;
-    }
-
+    .contact { margin-top: 1.5rem; font-size: 0.95rem; opacity: 0.85; }
     footer {
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
       color: #aaa;
-      z-index: 1;
       position: relative;
+      z-index: 1;
     }
   </style>
 </head>
-
 <body>
-  <!-- 🌌 背景动画容器 -->
+  <!-- 动画容器 -->
   <div id="vanta-bg"></div>
 
-  <!-- 🔝 导航栏 -->
+  <!-- 导航 -->
   <header>
     <div>Jiaqi Liang</div>
     <nav>
@@ -125,7 +92,7 @@
     </nav>
   </header>
 
-  <!-- 🎯 主内容区 -->
+  <!-- 主区 -->
   <div class="hero">
     <img class="profile-photo" src="photo.jpg" alt="Jiaqi Liang">
     <h1>Hi, I'm Jiaqi</h1>
@@ -135,11 +102,10 @@
     </div>
   </div>
 
-  <!-- 🔚 页脚 -->
-  <footer>
-    © 2025 Jiaqi Liang · Powered by GitHub Pages
-  </footer>
+  <!-- 页脚 -->
+  <footer>© 2025 Jiaqi Liang · Powered by GitHub Pages</footer>
 
+  <!-- 三方 Script -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.globe.min.js"></script>
   <script>
@@ -151,8 +117,8 @@
           mouseControls: true,
           touchControls: true,
           gyroControls: false,
-          minHeight: 200,
-          minWidth: 200,
+          minHeight: 500,
+          minWidth: 500,
           scale: 1.0,
           scaleMobile: 1.0,
           color: 0xcaabca,
@@ -161,16 +127,12 @@
         });
         console.log('Vanta Globe initialized:', window.vantaEffect);
       } else {
-        console.error("VANTA.GLOBE is not ready:", VANTA);
+        console.error("VANTA.GLOBE is not available", VANTA);
       }
     });
-
     window.addEventListener('resize', () => {
-      if (window.vantaEffect && typeof window.vantaEffect.resize === 'function') {
-        window.vantaEffect.resize();}});
-    
+      if (window.vantaEffect?.resize) window.vantaEffect.resize();
+    });
   </script>
-  
-  
 </body>
 </html>
