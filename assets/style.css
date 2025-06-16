@@ -66,21 +66,17 @@ nav a:hover {
   height: 100%;
   z-index: -1;
 }
-
-.hero h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #ff8a00, #e52e71);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
 }
 
-.hero p {
-  font-size: 1.25rem;
-  margin: 1rem 0;
-  max-width: 600px;
-}
 
 /* Profile Image */
 .profile-photo {
