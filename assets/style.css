@@ -45,43 +45,39 @@ body {
   opacity: 1;
 }
 
+/* 首页背景动画 */
 .bg-animation {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, #1f2937, #3b82f6); /* 深蓝渐变背景 */
+  overflow: hidden;
   z-index: -2;
-  background: linear-gradient(45deg, #FAF9F6, #F2F0ED, #F5F3F0);
-  background-size: 400% 400%;
-  animation: gradientShift 8s ease infinite;
-  opacity: 0;
-  transition: opacity 0.5s ease;
 }
 
+/* 动态网格线条 */
 .bg-animation::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(107, 125, 138, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(184, 157, 122, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 60%, rgba(127, 165, 168, 0.1) 0%, transparent 50%);
-  animation: float 6s ease-in-out infinite;
+  top: 0; left: 0;
+  width: 200%;
+  height: 200%;
+  background-image:
+    linear-gradient(0deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridMove 60s linear infinite;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.5));
 }
 
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+/* 轻微移动的网格线条 */
+@keyframes gridMove {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 40px 40px, 40px 40px; }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(180deg); }
-}
 
 /* Navbar */
 .navbar {
