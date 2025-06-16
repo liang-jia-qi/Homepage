@@ -124,21 +124,14 @@
           color2: 0xb69b7f,
           backgroundColor: 0x000000
         });
-  
-        // 动画初始化后，调整 canvas 样式
-        const canvas = document.querySelector("#vanta-bg canvas");
-        if (canvas) {
-          canvas.style.width = "100vw";
-          canvas.style.height = "100vh";
-          canvas.style.aspectRatio = "auto";
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
-        }
+    
+        // 立刻调用一次 resize，强制更新画布尺寸
+        window.vantaEffect.resize();
       } else {
         console.error("VANTA.GLOBE is not available", VANTA);
       }
     });
-  
+    
     window.addEventListener('resize', () => {
       if (window.vantaEffect?.resize) window.vantaEffect.resize();
     });
