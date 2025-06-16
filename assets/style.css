@@ -81,43 +81,12 @@ body {
 
 /* Navbar */
 .navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 20px 50px;
-  background: rgba(10, 10, 10, 0.8);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-color);
-  z-index: 1000;
-  transition: all 0.3s ease;
-}
-
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-size: 24px;
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 30px;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(15px);
 }
 
 .nav-links a {
-  text-decoration: none;
-  color: var(--text-primary);
+  color: #eee;
   font-weight: 500;
   padding: 10px 20px;
   border-radius: 25px;
@@ -222,4 +191,11 @@ body {
 @keyframes slideInLeft {
   from { opacity: 0; transform: translateX(-50px); }
   to { opacity: 1; transform: translateX(0); }
+}
+
+/* cv.html 的内容容器 */
+.page.cv .container {
+  max-width: 900px;    /* 限制最大宽度 */
+  margin: 0 auto;      /* 居中 */
+  padding: 0 20px;     /* 两侧各 20px 内间距 */
 }
