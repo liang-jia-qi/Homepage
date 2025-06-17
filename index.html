@@ -94,8 +94,13 @@
     }
 
     .profile-photo::before {
-      content: "photo.jpg";
+      content: "";
       display: block;
+      width: 100px; /* 设定宽度 */
+      height: 100px; /* 设定高度 */
+      background-image: url("photo.jpg");
+      background-size: cover;
+      background-position: center;
     }
 
     .profile-photo[src]:not([src=""]) {
