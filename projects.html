@@ -235,7 +235,18 @@
       filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
     }
 
-    /* Project-specific gradients */
+    /* 图片样式 - 在这里替换背景图片 */
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    /* Project-specific gradients - 如果没有图片时的渐变背景 */
     .card-image.smart-city {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
@@ -303,7 +314,7 @@
     }
 
     .card-features {
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
     }
 
     .features-list {
@@ -319,81 +330,6 @@
       border-radius: 20px;
       font-size: 0.8rem;
       font-weight: 500;
-    }
-
-    .card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 1.5rem;
-    }
-
-    .card-timeline {
-      color: #aaa;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .card-status {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .status-completed {
-      color: #4ade80;
-    }
-
-    .status-ongoing {
-      color: #60a5fa;
-    }
-
-    .status-planning {
-      color: #fbbf24;
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: currentColor;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-    .project-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 1.5rem;
-    }
-
-    .stat-item {
-      text-align: center;
-      padding: 12px 8px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-    }
-
-    .stat-value {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #63a4ff;
-      margin-bottom: 4px;
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-      color: #aaa;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
 
     @media (max-width: 768px) {
@@ -420,11 +356,6 @@
       
       .card-content {
         padding: 2rem;
-      }
-      
-      .project-stats {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
       }
     }
   </style>
@@ -461,6 +392,7 @@
       
       <!-- Project Card 1 -->
       <div class="project-card" onclick="window.open('project-detail-smart-district.html', '_blank')">
+        <!-- 卡片1封面图位置 - 在下一行添加 <img src="your-image-1.jpg" alt="Smart District"> -->
         <div class="card-image smart-city">
           <div class="placeholder-icon">🏙️</div>
         </div>
@@ -469,21 +401,6 @@
           <h3 class="card-title">Smart District Revitalization</h3>
           <p class="card-description">Comprehensive urban renewal project integrating IoT infrastructure, green buildings, and community spaces to create a model sustainable neighborhood.</p>
           
-          <div class="project-stats">
-            <div class="stat-item">
-              <div class="stat-value">2.5km²</div>
-              <div class="stat-label">Area</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">15K</div>
-              <div class="stat-label">Residents</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">€45M</div>
-              <div class="stat-label">Budget</div>
-            </div>
-          </div>
-
           <div class="card-features">
             <div class="features-list">
               <span class="feature-tag">Smart Grid</span>
@@ -492,19 +409,12 @@
               <span class="feature-tag">Digital Hub</span>
             </div>
           </div>
-
-          <div class="card-footer">
-            <div class="card-timeline">2022 - 2025</div>
-            <div class="card-status status-ongoing">
-              <div class="status-dot"></div>
-              In Progress
-            </div>
-          </div>
         </div>
       </div>
 
       <!-- Project Card 2 -->
       <div class="project-card" onclick="window.open('project-detail-mobility-hub.html', '_blank')">
+        <!-- 卡片2封面图位置 - 在下一行添加 <img src="your-image-2.jpg" alt="Mobility Hub"> -->
         <div class="card-image mobility-hub">
           <div class="placeholder-icon">🚊</div>
         </div>
@@ -513,21 +423,6 @@
           <h3 class="card-title">Integrated Mobility Hub</h3>
           <p class="card-description">Multi-modal transportation center combining rail, bus, bike-share, and e-scooter services with commercial and community facilities.</p>
           
-          <div class="project-stats">
-            <div class="stat-item">
-              <div class="stat-value">5</div>
-              <div class="stat-label">Modes</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">50K</div>
-              <div class="stat-label">Daily Users</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">€28M</div>
-              <div class="stat-label">Investment</div>
-            </div>
-          </div>
-
           <div class="card-features">
             <div class="features-list">
               <span class="feature-tag">Transit Hub</span>
@@ -536,19 +431,12 @@
               <span class="feature-tag">Smart Parking</span>
             </div>
           </div>
-
-          <div class="card-footer">
-            <div class="card-timeline">2021 - 2023</div>
-            <div class="card-status status-completed">
-              <div class="status-dot"></div>
-              Completed
-            </div>
-          </div>
         </div>
       </div>
 
       <!-- Project Card 3 -->
       <div class="project-card" onclick="window.open('project-detail-green-corridor.html', '_blank')">
+        <!-- 卡片3封面图位置 - 在下一行添加 <img src="your-image-3.jpg" alt="Green Corridor"> -->
         <div class="card-image green-infrastructure">
           <div class="placeholder-icon">🌿</div>
         </div>
@@ -557,21 +445,6 @@
           <h3 class="card-title">Urban Green Corridor</h3>
           <p class="card-description">Linear park system connecting neighborhoods through sustainable stormwater management, biodiversity preservation, and recreational pathways.</p>
           
-          <div class="project-stats">
-            <div class="stat-item">
-              <div class="stat-value">8km</div>
-              <div class="stat-label">Length</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">120</div>
-              <div class="stat-label">Species</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">35%</div>
-              <div class="stat-label">Runoff Reduction</div>
-            </div>
-          </div>
-
           <div class="card-features">
             <div class="features-list">
               <span class="feature-tag">Rain Gardens</span>
@@ -580,19 +453,12 @@
               <span class="feature-tag">Native Plants</span>
             </div>
           </div>
-
-          <div class="card-footer">
-            <div class="card-timeline">2020 - 2022</div>
-            <div class="card-status status-completed">
-              <div class="status-dot"></div>
-              Completed
-            </div>
-          </div>
         </div>
       </div>
 
       <!-- Project Card 4 -->
       <div class="project-card" onclick="window.open('project-detail-affordable-housing.html', '_blank')">
+        <!-- 卡片4封面图位置 - 在下一行添加 <img src="your-image-4.jpg" alt="Affordable Housing"> -->
         <div class="card-image housing">
           <div class="placeholder-icon">🏠</div>
         </div>
@@ -601,21 +467,6 @@
           <h3 class="card-title">Affordable Housing Complex</h3>
           <p class="card-description">Innovative social housing development featuring modular construction, energy-positive design, and integrated community services.</p>
           
-          <div class="project-stats">
-            <div class="stat-item">
-              <div class="stat-value">300</div>
-              <div class="stat-label">Units</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">750</div>
-              <div class="stat-label">Residents</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">Net+</div>
-              <div class="stat-label">Energy</div>
-            </div>
-          </div>
-
           <div class="card-features">
             <div class="features-list">
               <span class="feature-tag">Passive House</span>
@@ -624,19 +475,12 @@
               <span class="feature-tag">Co-working Space</span>
             </div>
           </div>
-
-          <div class="card-footer">
-            <div class="card-timeline">2023 - 2026</div>
-            <div class="card-status status-ongoing">
-              <div class="status-dot"></div>
-              In Progress
-            </div>
-          </div>
         </div>
       </div>
 
       <!-- Project Card 5 -->
       <div class="project-card" onclick="window.open('project-detail-waterfront.html', '_blank')">
+        <!-- 卡片5封面图位置 - 在下一行添加 <img src="your-image-5.jpg" alt="Waterfront"> -->
         <div class="card-image waterfront">
           <div class="placeholder-icon">🌊</div>
         </div>
@@ -645,21 +489,6 @@
           <h3 class="card-title">Climate-Resilient Waterfront</h3>
           <p class="card-description">Adaptive waterfront redevelopment addressing sea-level rise through innovative flood defenses, floating structures, and amphibious architecture.</p>
           
-          <div class="project-stats">
-            <div class="stat-item">
-              <div class="stat-value">3.2km</div>
-              <div class="stat-label">Coastline</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">2m</div>
-              <div class="stat-label">Sea Rise</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">€60M</div>
-              <div class="stat-label">Investment</div>
-            </div>
-          </div>
-
           <div class="card-features">
             <div class="features-list">
               <span class="feature-tag">Floating Docks</span>
@@ -668,19 +497,12 @@
               <span class="feature-tag">Wetlands</span>
             </div>
           </div>
-
-          <div class="card-footer">
-            <div class="card-timeline">2024 - 2027</div>
-            <div class="card-status status-planning">
-              <div class="status-dot"></div>
-              Planning
-            </div>
-          </div>
         </div>
       </div>
 
       <!-- Project Card 6 -->
       <div class="project-card" onclick="window.open('project-detail-cultural-quarter.html', '_blank')">
+        <!-- 卡片6封面图位置 - 在下一行添加 <img src="your-image-6.jpg" alt="Cultural Quarter"> -->
         <div class="card-image cultural">
           <div class="placeholder-icon">🎭</div>
         </div>
@@ -689,21 +511,6 @@
           <h3 class="card-title">Creative Cultural Quarter</h3>
           <p class="card-description">Adaptive reuse of industrial heritage for contemporary arts, maker spaces, and cultural venues while preserving historical character.</p>
           
-          <div class="project-stats">
-            <div class="stat-item">
-              <div class="stat-value">12</div>
-              <div class="stat-label">Buildings</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">2000</div>
-              <div class="stat-label">Artists</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">1.2M</div>
-              <div class="stat-label">Visitors/Year</div>
-            </div>
-          </div>
-
           <div class="card-features">
             <div class="features-list">
               <span class="feature-tag">Art Studios</span>
@@ -712,19 +519,12 @@
               <span class="feature-tag">Heritage Preservation</span>
             </div>
           </div>
-
-          <div class="card-footer">
-            <div class="card-timeline">2019 - 2021</div>
-            <div class="card-status status-completed">
-              <div class="status-dot"></div>
-              Completed
-            </div>
-          </div>
         </div>
       </div>
 
       <!-- Project Card 7 -->
       <div class="project-card" onclick="window.open('project-detail-mixed-use.html', '_blank')">
+        <!-- 卡片7封面图位置 - 在下一行添加 <img src="your-image-7.jpg" alt="Mixed-Use District"> -->
         <div class="card-image mixed-use">
           <div class="placeholder-icon">🏢</div>
         </div>
@@ -733,21 +533,6 @@
           <h3 class="card-title">Mixed-Use Innovation District</h3>
           <p class="card-description">High-density development combining residential, office, retail, and educational facilities with integrated smart city technologies.</p>
           
-          <div class="project-stats">
-            <div class="stat-item">
-              <div class="stat-value">25</div>
-              <div class="stat-label">Buildings</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">8K</div>
-              <div class="stat-label">Workers</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">3K</div>
-              <div class="stat-label">Residents</div>
-            </div>
-          </div>
-
           <div class="card-features">
             <div class="features-list">
               <span class="feature-tag">Tech Campus</span>
@@ -756,19 +541,12 @@
               <span class="feature-tag">Innovation Labs</span>
             </div>
           </div>
-
-          <div class="card-footer">
-            <div class="card-timeline">2023 - 2026</div>
-            <div class="card-status status-ongoing">
-              <div class="status-dot"></div>
-              In Progress
-            </div>
-          </div>
         </div>
       </div>
 
       <!-- Project Card 8 -->
       <div class="project-card" onclick="window.open('project-detail-urban-farming.html', '_blank')">
+        <!-- 卡片8封面图位置 - 在下一行添加 <img src="your-image-8.jpg" alt="Urban Farming"> -->
         <div class="card-image green-infrastructure">
           <div class="placeholder-icon">🌱</div>
         </div>
@@ -777,35 +555,12 @@
           <h3 class="card-title">Vertical Urban Farming Hub</h3>
           <p class="card-description">Multi-story agricultural facility integrating hydroponic systems, renewable energy, and community education programs in urban core.</p>
           
-          <div class="project-stats">
-            <div class="stat-item">
-              <div class="stat-value">15</div>
-              <div class="stat-label">Floors</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">500T</div>
-              <div class="stat-label">Annual Yield</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">90%</div>
-              <div class="stat-label">Water Savings</div>
-            </div>
-          </div>
-
           <div class="card-features">
             <div class="features-list">
               <span class="feature-tag">Hydroponics</span>
               <span class="feature-tag">LED Growing</span>
               <span class="feature-tag">Education Center</span>
               <span class="feature-tag">Zero Waste</span>
-            </div>
-          </div>
-
-          <div class="card-footer">
-            <div class="card-timeline">2024 - Present</div>
-            <div class="card-status status-ongoing">
-              <div class="status-dot"></div>
-              In Progress
             </div>
           </div>
         </div>
@@ -850,3 +605,7 @@
           }, 150);
         });
       });
+    });
+  </script>
+</body>
+</html>
