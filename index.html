@@ -77,39 +77,19 @@
       pointer-events: auto;
     }
 
-    .profile-photo {
+   .profile-photo {
       width: 180px;
       height: 180px;
       border-radius: 50%;
-      object-fit: cover;
       border: 3px solid white;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
       margin-bottom: 20px;
-      /* Fallback background for missing image */
-      background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-    }
-
-    .profile-photo::before {
-      content: "";
-      display: block;
-      width: 100px; /* 设定宽度 */
-      height: 100px; /* 设定高度 */
       background-image: url("photo.jpg");
       background-size: cover;
       background-position: center;
-    }
-
-    .profile-photo[src]:not([src=""]) {
-      background: none;
-    }
-
-    .profile-photo[src]:not([src=""])::before {
-      display: none;
-    }
+      background-color: #764ba2;
+      background-blend-mode: overlay;
+    } 
 
     .contact {
       margin-top: 1.5rem;
