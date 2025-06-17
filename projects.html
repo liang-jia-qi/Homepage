@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Urban Projects | Jiaqi Liang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+      color: white;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Animated background grid */
+    .grid-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;
+      background-image: 
+        linear-gradient(rgba(99, 164, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 164, 255, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridMove 20s linear infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .orb1 {
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(99, 164, 255, 0.1) 0%, transparent 70%);
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .orb2 {
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(68, 138, 255, 0.08) 0%, transparent 70%);
+      top: 60%;
+      right: 15%;
+      animation-delay: 3s;
+    }
+
+    .orb3 {
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(130, 177, 255, 0.12) 0%, transparent 70%);
+      bottom: 20%;
+      left: 30%;
+      animation-delay: 6s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      33% { transform: translateY(-30px) scale(1.1); }
+      66% { transform: translateY(15px) scale(0.9); }
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #63a4ff;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: 400;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 5px 0;
+    }
+
+    nav a:hover, nav a.active {
+      color: #63a4ff;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #63a4ff;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after, nav a.active::after {
+      width: 100%;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 2rem 4rem;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .page-header h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      background: linear-gradient(135deg, #63a4ff, #448aff, #82b1ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-header .subtitle {
+      font-size: 1.3rem;
+      color: #aaa;
+      font-weight: 300;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      position: relative;
+      height: fit-content;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(99, 164, 255, 0.1), rgba(68, 138, 255, 0.05));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      border-color: rgba(99, 164, 255, 0.4);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(99, 164, 255, 0.2);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 250px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      z-index: 2;
+    }
+
+    .card-image .placeholder-icon {
+      font-size: 5rem;
+      color: rgba(255, 255, 255, 0.9);
+      z-index: 3;
+      position: relative;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    }
+
+    /* Project-specific gradients */
+    .card-image.smart-city {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .card-image.urban-planning {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .card-image.green-infrastructure {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .card-image.mobility-hub {
+      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    }
+
+    .card-image.housing {
+      background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    }
+
+    .card-image.waterfront {
+      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    }
+
+    .card-image.cultural {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    }
+
+    .card-image.mixed-use {
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    }
+
+    .card-content {
+      padding: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-location {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(99, 164, 255, 0.15);
+      color: #82b1ff;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .card-description {
+      color: #ccc;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.8rem;
+    }
+
+    .card-features {
+      margin-bottom: 2rem;
+    }
+
+    .features-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .feature-tag {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ddd;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1.5rem;
+    }
+
+    .card-timeline {
+      color: #aaa;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .card-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .status-completed {
+      color: #4ade80;
+    }
+
+    .status-ongoing {
+      color: #60a5fa;
+    }
+
+    .status-planning {
+      color: #fbbf24;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .project-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 12px 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
+
+    .stat-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #63a4ff;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .container {
+        padding: 100px 1rem 2rem;
+      }
+      
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      nav {
+        gap: 15px;
+      }
+      
+      nav a {
+        font-size: 0.9rem;
+      }
+      
+      .card-content {
+        padding: 2rem;
+      }
+      
+      .project-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated background elements -->
+  <div class="grid-bg"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <!-- Navigation -->
+  <header>
+    <div class="logo">Jiaqi Liang</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cv.html">CV</a>
+      <a href="research.html">Research</a>
+      <a href="projects.html" class="active">Urban Projects</a>
+      <a href="international.html">International Work</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="page-header">
+      <h1>Urban Projects</h1>
+      <p class="subtitle">Real-world applications of urban planning principles, sustainable design, and community-centered development across diverse metropolitan contexts</p>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid">
+      
+      <!-- Project Card 1 -->
+      <div class="project-card" onclick="window.open('project-detail-smart-district.html', '_blank')">
+        <div class="card-image smart-city">
+          <div class="placeholder-icon">🏙️</div>
+        </div>
+        <div class="card-content">
+          <div class="card-location">📍 Vienna, Austria</div>
+          <h3 class="card-title">Smart District Revitalization</h3>
+          <p class="card-description">Comprehensive urban renewal project integrating IoT infrastructure, green buildings, and community spaces to create a model sustainable neighborhood.</p>
+          
+          <div class="project-stats">
+            <div class="stat-item">
+              <div class="stat-value">2.5km²</div>
+              <div class="stat-label">Area</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">15K</div>
+              <div class="stat-label">Residents</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">€45M</div>
+              <div class="stat-label">Budget</div>
+            </div>
+          </div>
+
+          <div class="card-features">
+            <div class="features-list">
+              <span class="feature-tag">Smart Grid</span>
+              <span class="feature-tag">Green Roofs</span>
+              <span class="feature-tag">Bike Sharing</span>
+              <span class="feature-tag">Digital Hub</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="card-timeline">2022 - 2025</div>
+            <div class="card-status status-ongoing">
+              <div class="status-dot"></div>
+              In Progress
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 2 -->
+      <div class="project-card" onclick="window.open('project-detail-mobility-hub.html', '_blank')">
+        <div class="card-image mobility-hub">
+          <div class="placeholder-icon">🚊</div>
+        </div>
+        <div class="card-content">
+          <div class="card-location">📍 Amsterdam, Netherlands</div>
+          <h3 class="card-title">Integrated Mobility Hub</h3>
+          <p class="card-description">Multi-modal transportation center combining rail, bus, bike-share, and e-scooter services with commercial and community facilities.</p>
+          
+          <div class="project-stats">
+            <div class="stat-item">
+              <div class="stat-value">5</div>
+              <div class="stat-label">Modes</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">50K</div>
+              <div class="stat-label">Daily Users</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">€28M</div>
+              <div class="stat-label">Investment</div>
+            </div>
+          </div>
+
+          <div class="card-features">
+            <div class="features-list">
+              <span class="feature-tag">Transit Hub</span>
+              <span class="feature-tag">EV Charging</span>
+              <span class="feature-tag">Retail Space</span>
+              <span class="feature-tag">Smart Parking</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="card-timeline">2021 - 2023</div>
+            <div class="card-status status-completed">
+              <div class="status-dot"></div>
+              Completed
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 3 -->
+      <div class="project-card" onclick="window.open('project-detail-green-corridor.html', '_blank')">
+        <div class="card-image green-infrastructure">
+          <div class="placeholder-icon">🌿</div>
+        </div>
+        <div class="card-content">
+          <div class="card-location">📍 Copenhagen, Denmark</div>
+          <h3 class="card-title">Urban Green Corridor</h3>
+          <p class="card-description">Linear park system connecting neighborhoods through sustainable stormwater management, biodiversity preservation, and recreational pathways.</p>
+          
+          <div class="project-stats">
+            <div class="stat-item">
+              <div class="stat-value">8km</div>
+              <div class="stat-label">Length</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">120</div>
+              <div class="stat-label">Species</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">35%</div>
+              <div class="stat-label">Runoff Reduction</div>
+            </div>
+          </div>
+
+          <div class="card-features">
+            <div class="features-list">
+              <span class="feature-tag">Rain Gardens</span>
+              <span class="feature-tag">Wildlife Habitat</span>
+              <span class="feature-tag">Cycling Path</span>
+              <span class="feature-tag">Native Plants</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="card-timeline">2020 - 2022</div>
+            <div class="card-status status-completed">
+              <div class="status-dot"></div>
+              Completed
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 4 -->
+      <div class="project-card" onclick="window.open('project-detail-affordable-housing.html', '_blank')">
+        <div class="card-image housing">
+          <div class="placeholder-icon">🏠</div>
+        </div>
+        <div class="card-content">
+          <div class="card-location">📍 Berlin, Germany</div>
+          <h3 class="card-title">Affordable Housing Complex</h3>
+          <p class="card-description">Innovative social housing development featuring modular construction, energy-positive design, and integrated community services.</p>
+          
+          <div class="project-stats">
+            <div class="stat-item">
+              <div class="stat-value">300</div>
+              <div class="stat-label">Units</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">750</div>
+              <div class="stat-label">Residents</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">Net+</div>
+              <div class="stat-label">Energy</div>
+            </div>
+          </div>
+
+          <div class="card-features">
+            <div class="features-list">
+              <span class="feature-tag">Passive House</span>
+              <span class="feature-tag">Solar Panels</span>
+              <span class="feature-tag">Community Garden</span>
+              <span class="feature-tag">Co-working Space</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="card-timeline">2023 - 2026</div>
+            <div class="card-status status-ongoing">
+              <div class="status-dot"></div>
+              In Progress
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 5 -->
+      <div class="project-card" onclick="window.open('project-detail-waterfront.html', '_blank')">
+        <div class="card-image waterfront">
+          <div class="placeholder-icon">🌊</div>
+        </div>
+        <div class="card-content">
+          <div class="card-location">📍 Stockholm, Sweden</div>
+          <h3 class="card-title">Climate-Resilient Waterfront</h3>
+          <p class="card-description">Adaptive waterfront redevelopment addressing sea-level rise through innovative flood defenses, floating structures, and amphibious architecture.</p>
+          
+          <div class="project-stats">
+            <div class="stat-item">
+              <div class="stat-value">3.2km</div>
+              <div class="stat-label">Coastline</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">2m</div>
+              <div class="stat-label">Sea Rise</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">€60M</div>
+              <div class="stat-label">Investment</div>
+            </div>
+          </div>
+
+          <div class="card-features">
+            <div class="features-list">
+              <span class="feature-tag">Floating Docks</span>
+              <span class="feature-tag">Tidal Barriers</span>
+              <span class="feature-tag">Marina</span>
+              <span class="feature-tag">Wetlands</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="card-timeline">2024 - 2027</div>
+            <div class="card-status status-planning">
+              <div class="status-dot"></div>
+              Planning
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 6 -->
+      <div class="project-card" onclick="window.open('project-detail-cultural-quarter.html', '_blank')">
+        <div class="card-image cultural">
+          <div class="placeholder-icon">🎭</div>
+        </div>
+        <div class="card-content">
+          <div class="card-location">📍 Barcelona, Spain</div>
+          <h3 class="card-title">Creative Cultural Quarter</h3>
+          <p class="card-description">Adaptive reuse of industrial heritage for contemporary arts, maker spaces, and cultural venues while preserving historical character.</p>
+          
+          <div class="project-stats">
+            <div class="stat-item">
+              <div class="stat-value">12</div>
+              <div class="stat-label">Buildings</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">2000</div>
+              <div class="stat-label">Artists</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">1.2M</div>
+              <div class="stat-label">Visitors/Year</div>
+            </div>
+          </div>
+
+          <div class="card-features">
+            <div class="features-list">
+              <span class="feature-tag">Art Studios</span>
+              <span class="feature-tag">Performance Hall</span>
+              <span class="feature-tag">Maker Space</span>
+              <span class="feature-tag">Heritage Preservation</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="card-timeline">2019 - 2021</div>
+            <div class="card-status status-completed">
+              <div class="status-dot"></div>
+              Completed
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 7 -->
+      <div class="project-card" onclick="window.open('project-detail-mixed-use.html', '_blank')">
+        <div class="card-image mixed-use">
+          <div class="placeholder-icon">🏢</div>
+        </div>
+        <div class="card-content">
+          <div class="card-location">📍 Munich, Germany</div>
+          <h3 class="card-title">Mixed-Use Innovation District</h3>
+          <p class="card-description">High-density development combining residential, office, retail, and educational facilities with integrated smart city technologies.</p>
+          
+          <div class="project-stats">
+            <div class="stat-item">
+              <div class="stat-value">25</div>
+              <div class="stat-label">Buildings</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">8K</div>
+              <div class="stat-label">Workers</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">3K</div>
+              <div class="stat-label">Residents</div>
+            </div>
+          </div>
+
+          <div class="card-features">
+            <div class="features-list">
+              <span class="feature-tag">Tech Campus</span>
+              <span class="feature-tag">Retail Plaza</span>
+              <span class="feature-tag">Residential Towers</span>
+              <span class="feature-tag">Innovation Labs</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="card-timeline">2023 - 2026</div>
+            <div class="card-status status-ongoing">
+              <div class="status-dot"></div>
+              In Progress
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 8 -->
+      <div class="project-card" onclick="window.open('project-detail-urban-farming.html', '_blank')">
+        <div class="card-image green-infrastructure">
+          <div class="placeholder-icon">🌱</div>
+        </div>
+        <div class="card-content">
+          <div class="card-location">📍 Milan, Italy</div>
+          <h3 class="card-title">Vertical Urban Farming Hub</h3>
+          <p class="card-description">Multi-story agricultural facility integrating hydroponic systems, renewable energy, and community education programs in urban core.</p>
+          
+          <div class="project-stats">
+            <div class="stat-item">
+              <div class="stat-value">15</div>
+              <div class="stat-label">Floors</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">500T</div>
+              <div class="stat-label">Annual Yield</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">90%</div>
+              <div class="stat-label">Water Savings</div>
+            </div>
+          </div>
+
+          <div class="card-features">
+            <div class="features-list">
+              <span class="feature-tag">Hydroponics</span>
+              <span class="feature-tag">LED Growing</span>
+              <span class="feature-tag">Education Center</span>
+              <span class="feature-tag">Zero Waste</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="card-timeline">2024 - Present</div>
+            <div class="card-status status-ongoing">
+              <div class="status-dot"></div>
+              In Progress
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Add stagger animation on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const projectCards = document.querySelectorAll('.project-card');
+      
+      projectCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(40px)';
+        
+        setTimeout(() => {
+          card.style.transition = 'all 0.6s ease';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, index * 200);
+      });
+
+      // Add enhanced hover effects
+      projectCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'translateY(-15px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'translateY(0) scale(1)';
+        });
+      });
+
+      // Add click animation
+      projectCards.forEach(card => {
+        card.addEventListener('click', () => {
+          card.style.transform = 'translateY(-10px) scale(0.98)';
+          setTimeout(() => {
+            card.style.transform = 'translateY(-15px) scale(1.02)';
+          }, 150);
+        });
+      });
